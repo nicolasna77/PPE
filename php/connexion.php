@@ -1,0 +1,52 @@
+<?php
+// connexion a la bdd
+include ("connectBdd.php"); 
+$msg = "";
+?>
+<?php
+//// verification si le bouton du formuliare a ete click
+if(isset($_POST["submitBtnLogin"]))  
+      {  
+           //// verification si l'adresse mail et le mot de passe
+
+           if(empty($_POST["email"]) || empty($_POST["motDePasse"]))  
+           {  
+                $msg = '<label>les champs sont manquant</label>';  
+           }  
+           else  
+           {  
+                $query = $db->prepare("SELECT * FROM client  WHERE email = :email");  
+                $query->bindValue(':email', $_POST['email'] ,PDO::PARAM_STR); 
+                $query->execute();
+                
+                $data = $query->fetch();
+               
+                if ($data['password'] == md5($_POST['password'])) {
+
+                 
+                  $msg = "<script>$(document).ready(function() { M.toast({html: 'Connecter', classes:'rounded green'}) });</script>"; 
+
+  
+  header('Location: ./index.html');
+
+                    
+                } else{
+                  $msg = '
+                  <div class="row">
+    <div class="col s12 m6">
+                  <div class="card blue-grey darken-1">
+                  <div class="card-content white-text">
+                  <p>Une erreur s\'est produite 
+                  pendant votre identification.<br /> Le mot de passe ou le pseudo 
+                  </div>
+                  </div>
+                  </div> 
+                  </div>
+                  ';
+              }
+             $query->CloseCursor();  
+                }
+       
+          }
+
+ ?>  
