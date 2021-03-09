@@ -1,17 +1,18 @@
 <?php
 // connexion a la bdd
-include ("connectBdd.php"); 
-$msg = "";
-?>
-<?php
+include ("bdd/connectBdd.php"); 
+
+
 //// verification si le bouton du formuliare a ete click
-if(isset($_POST["submitBtnLogin"]))  
+if(isset($_POST["submitFormConnexion"]))  
       {  
+
            //// verification si l'adresse mail et le mot de passe
 
-           if(empty($_POST["email"]) || empty($_POST["motDePasse"]))  
+           if(empty($_POST["email"]) || empty($_POST["password"]))  
            {  
-                $msg = '<label>les champs sont manquant</label>';  
+               
+               
            }  
            else  
            {  
