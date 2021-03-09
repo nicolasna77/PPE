@@ -12,10 +12,11 @@ if(isset($_POST["submitFormConnexion"]))
            if(empty($_POST["email"]) || empty($_POST["password"]))  
            {  
                
-               
+              
            }  
            else  
            {  
+              
                 $query = $db->prepare("SELECT * FROM client  WHERE email = :email");  
                 $query->bindValue(':email', $_POST['email'] ,PDO::PARAM_STR); 
                 $query->execute();
