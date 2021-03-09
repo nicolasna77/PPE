@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="row align-items-center ">
+    <div class="row align-items-center">
         <div class="col">
         </div>
         <div class="col">
@@ -20,14 +20,14 @@
                 <div class="card-body">
 
                     <div>
-                        <form>
+                        <form method="POST" action="enregistrement.php">
                             <div class="mb-3 row">
 
                                 <div>
                                     <label for="staticEmail" class="col-sm-3 col-form-label">Nom</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="text" aria-label="default input example">
+                                    <input class="form-control" type="text" name='nom' >
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -36,7 +36,7 @@
                                     <label for="staticEmail" class="col-sm-3 col-form-label">Prenom</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input class="form-control" type="text" aria-label="default input example">
+                                    <input class="form-control" type="text" aria-label="default input example" >
                                 </div>
 
                             </div>
@@ -45,7 +45,7 @@
                                     <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
                                 </div>
                                 <div class="col-sm-7">
-                                    <input type="text" class="form-control" id="inputEmail" value="email@example.com">
+                                    <input type="email" class="form-control" id="inputEmail" value="email@example.com">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -59,13 +59,13 @@
 
                             <div class="mb-3 row">
                                 <div>
-                                    <label for="inputPassword" class="col-sm-7 col-form-label">Comfimation mot de passe</label>
+                                    <label for="inputPassword" class="col-sm-7 col-form-label">Confirmation mot de passe</label>
                                 </div>
                                 <div class="col-sm-7">
                                     <input type="password" class="form-control" id="inputPassword">
                                 </div>
                             </div>
-                            <a class="btn btn-primary" type="submit">S'enregistrer</a>
+                            <input class="btn btn-primary" name="submitFormEnregistrement" type="submit">S'enregistrer</input>
 
                         </form>
                     </div>
