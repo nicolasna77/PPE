@@ -18,7 +18,7 @@ if(isset($_POST["submitFormConnexion"]))
                     echo 'pas de mail';
 
                  } elseif (empty($_POST["password"])) {
-                    
+
                     echo 'pas de mot de passe ';
                 
                
@@ -46,7 +46,7 @@ if(isset($_POST["submitFormConnexion"]))
                 } else{
 
 
-                  echo 'lutilisateur n\'ai pas reconnu';
+                  echo 'l\'utilisateur n\'ai pas reconnu';
 
 
               }
@@ -54,3 +54,6 @@ if(isset($_POST["submitFormConnexion"]))
                 }
        
           }
+
+
+          ?>
