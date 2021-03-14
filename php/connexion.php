@@ -16,7 +16,9 @@ if(isset($_POST["submitFormConnexion"]))
            }elseif (empty($_POST["email"])) {
 /// verification que le mail soit bien entrer 
                     echo 'pas de mail';
+
                  } elseif (empty($_POST["password"])) {
+                    
                     echo 'pas de mot de passe ';
                 
                
@@ -42,11 +44,13 @@ if(isset($_POST["submitFormConnexion"]))
 
                     
                 } else{
-                  echo 'ferzfze';
+
+
+                  echo 'lutilisateur n\'ai pas reconnu';
+
+
               }
              $query->CloseCursor();  
                 }
        
           }
-
- ?>  
