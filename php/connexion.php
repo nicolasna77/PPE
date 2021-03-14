@@ -11,8 +11,10 @@ if(isset($_POST["submitFormConnexion"]))
 
            if(empty($_POST["email"]) && empty($_POST["password"]))  
            {  
-
+/// verification que le mot de passe soit bien entrer 
+            
            }elseif (empty($_POST["email"])) {
+/// verification que le mail soit bien entrer 
                     echo 'pas de mail';
                  } elseif (empty($_POST["password"])) {
                     echo 'pas de mot de passe ';
@@ -21,35 +23,26 @@ if(isset($_POST["submitFormConnexion"]))
               
            }else  
            {  
-              
-                $query = $db->prepare("SELECT * FROM client  WHERE email = :email");  
+              ////si il n'y a pas de probleme alors je verifie avec la base de données////
+                $query = $db->prepare("SELECT * FROM connexions  WHERE email = :email");  
                 $query->bindValue(':email', $_POST['email'] ,PDO::PARAM_STR); 
                 $query->execute();
                 
                 $data = $query->fetch();
                
-                if ($data['password'] == md5($_POST['password'])) {
+                if ($data['password'] == $_POST['password']) {
 
+
+                  ///// passer le mot de passe en md5 ne pas oublier 
+   // if ($data['password'] == md5($_POST['password'])) {
                  
-                  $msg = "<script>$(document).ready(function() { M.toast({html: 'Connecter', classes:'rounded green'}) });</script>"; 
+            echo 'vous etes bien connecter';
 
-  
-  header('Location: ./index.html');
+//   header('Location: ./index.html');
 
                     
                 } else{
-                  $msg = '
-                  <div class="row">
-    <div class="col s12 m6">
-                  <div class="card blue-grey darken-1">
-                  <div class="card-content white-text">
-                  <p>Une erreur s\'est produite 
-                  pendant votre identification.<br /> Le mot de passe ou le pseudo 
-                  </div>
-                  </div>
-                  </div> 
-                  </div>
-                  ';
+                  echo 'ferzfze';
               }
              $query->CloseCursor();  
                 }
