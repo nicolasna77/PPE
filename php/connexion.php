@@ -90,6 +90,7 @@ while($stocks = $stock->fetch())
                 <h5 class="card-title">'.$stocks["genre"].'</h5>
                 <p class="card-text">'.$stocks["couleur"].'</p>
                 <p class="card-text">'.$stocks["taille"].'</p>
+                <p class="card-text">'.$stocks["taille"].'</p>
             </div>
 
 
