@@ -2,11 +2,10 @@
 <?php
 // connexion a la bdd
 include ("bdd/connectBdd.php"); 
-
+$card="";
 
 //// verification si le bouton du formuliare a ete click
-if(isset($_POST["submitFormConnexion"]))  
-      {  
+if(isset($_POST["submitFormConnexion"])) {  
 
                    //// verification si l'adresse mail et le mot de passe
 
@@ -32,23 +31,18 @@ if(isset($_POST["submitFormConnexion"]))
                 $query = $db->prepare("SELECT * FROM connexions  WHERE email = :email");  
                 $query->bindValue(':email', $_POST['email'] ,PDO::PARAM_STR); 
                 $query->execute();
-                
                 $data = $query->fetch();
                
                 if ($data['password'] == $_POST['password']) {
-
 
                   ///// passer le mot de passe en md5 ne pas oublier 
                // if ($data['password'] == md5($_POST['password'])) {
                  
             echo 'vous etes bien connecter.';
-
                     
                 } else{
 
-
                   echo 'l\'utilisateur n\'ai pas reconnu';
-
 
               }
              $query->CloseCursor();  
@@ -57,32 +51,83 @@ if(isset($_POST["submitFormConnexion"]))
           }
 
 
+
+
+      
+
+
+
+
                 // recuperation des données pour les select
 
-          if(isset($_POST["submitEnvoi"])){
+      
+            
+                  
+            
+             
+            
+            
+            
+                if(isset($_POST["submitEnvoi"])){
 
       
              
                 if ($_POST["checkboxConsultation"]== 'on') {
-            
-            
-                 
 
-                    $query = $db->prepare("SELECT distinct genre FROM stock");  
-                  
+                 
+                 $stock = $db->query("SELECT * FROM stock"); 
+
+while($stocks = $stock->fetch())
+{
+
+   echo' <br>
+<div class=" row-cols-5  row-cols-md-2 g-7">
+    <div class="col row-cols-2">
+
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">'.$stocks["genre"].'</h5>
+                <p class="card-text">'.$stocks["couleur"].'</p>
+                <p class="card-text">'.$stocks["taille"].'</p>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</div>';
+}
+
+
+                   
+                }
+                $stock->closeCursor();
+                
     echo'checkbox';  
                     }
-            
-                  
-            
-                 }
-            
-            
-            
-            
-            }
-            
+                
 
+
+
+
+
+
+
+
+
+
+
+
+
+                $genre = $db->query("SELECT distinct genre FROM stock"); 
+                $typeVet = $db->query("SELECT distinct typeVet FROM stock"); 
+                $taille = $db->query("SELECT distinct taille FROM stock"); 
+                $couleur = $db->query("SELECT distinct couleur FROM stock"); 
+                $Quantite = $db->query("SELECT distinct Quantite FROM stock"); 
           ?>
 
 
@@ -108,20 +153,50 @@ if(isset($_POST["submitFormConnexion"]))
 
                     <form method="POST"  class="row g-3 needs-validation">
 
+
+
+
                         <!-- select pour le genre  -->
+                  
                         <div class="col-md-3">
                             <select class="form-select" id="validationCustom04">
             <option selected disabled value="">Genre</option>
-            <option></option>
-          </select>
+            <?php   
+                while ($genres = $genre->fetch())
+                {
+            ?> 
+        
+            <option name=" <?php echo $genres['genre'];  ?> " > <?php echo $genres['genre'];  ?> </option>
+              
+            <?php
+            }
+            $genre->closeCursor();
+            ?>
+
+                </select>
                         </div>
+ 
+
+
+
+
 
 
                         <!-- select pour le type de vetement  -->
                         <div class="col-md-3">
                             <select class="form-select" id="validationCustom04">
             <option selected disabled value="">Type vetement </option>
-            <option>...</option>
+            <?php   
+                while ($typeVets = $typeVet->fetch())
+                {
+                        ?> 
+           
+            <option name=" <?php echo $typeVets['typeVet'];  ?> " > <?php echo $typeVets['typeVet'];  ?> </option>
+              
+            <?php
+            }
+            $typeVet->closeCursor();
+        ?>
           </select>
 
                         </div>
@@ -132,7 +207,17 @@ if(isset($_POST["submitFormConnexion"]))
                         <div class="col-md-3">
                             <select class="form-select" id="validationCustom04">
             <option selected disabled value="">Taille </option>
-            <option></option>
+            <?php   
+                while ($tailles = $taille->fetch())
+                {
+            ?> 
+        
+            <option name=" <?php echo $tailles['taille'];  ?> " > <?php echo $tailles['taille'];  ?> </option>
+              
+            <?php
+            }
+            $taille->closeCursor();
+            ?>
           </select>
 
                         </div>
@@ -142,7 +227,17 @@ if(isset($_POST["submitFormConnexion"]))
                         <div class="col-md-3">
                             <select class="form-select" id="validationCustom04">
             <option selected disabled value="">Couleur </option>
-            <option>...</option>
+            <?php   
+                while ($couleurs = $couleur->fetch())
+                {
+            ?> 
+        
+            <option name=" <?php echo $couleurs['couleur'];  ?> " > <?php echo $couleurs['couleur'];  ?> </option>
+              
+            <?php
+            }
+            $couleur->closeCursor();
+            ?>
           </select>
 
                         </div>
@@ -152,8 +247,18 @@ if(isset($_POST["submitFormConnexion"]))
                         <!-- select pour le quantité  -->
                         <div class="col-md-3">
                             <select class="form-select" id="validationCustom04">
-            <option selected disabled value="">Qte </option>
-            <option>...</option>
+            <option selected disabled value="">Quantite </option>
+            <?php   
+                while ($Quantites = $Quantite->fetch())
+                {
+            ?> 
+        
+            <option name=" <?php echo $Quantites['Quantite'];  ?> " > <?php echo $Quantites['Quantite'];  ?> </option>
+              
+            <?php
+            }
+            $Quantite->closeCursor();
+            ?>
           </select>
 
                         </div>
@@ -195,7 +300,7 @@ if(isset($_POST["submitFormConnexion"]))
 
     </div>
     </div>
-
+    <?php echo $card ?>
 </body>
 
 
