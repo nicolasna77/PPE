@@ -9,13 +9,14 @@ echo'ferfz';
     if ($_POST["checkboxConsultation"]== 'on') {
 
 
-        $query = $db->prepare("SELECT * FROM stock");  
-        $query->execute();
+        echo'checkbox';   
+        // $query = $db->prepare("SELECT * FROM stock");  
+        // $query->execute();
         
-        $data = $query->fetch();
+        // $data = $query->fetch();
 
 
-        echo $data;
+        // echo $data;
 
      }
 
