@@ -2,28 +2,6 @@
 
 include ("bdd/connectBdd.php"); 
 
-if(isset($_POST["submitEnvoi"])){
-
-echo'ferfz';    
- 
-    if ($_POST["checkboxConsultation"]== 'on') {
-
-
-        echo'checkbox';   
-        // $query = $db->prepare("SELECT * FROM stock");  
-        // $query->execute();
-        
-        // $data = $query->fetch();
-
-
-        // echo $data;
-
-     }
-
-
-
-
-}
 
 
 
