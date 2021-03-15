@@ -15,6 +15,8 @@ echo'ferfz';
         $data = $query->fetch();
 
 
+        echo $data;
+
      }
 
 
