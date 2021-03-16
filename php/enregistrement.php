@@ -63,7 +63,7 @@ if(isset($_POST["submitFormEnregistrement"])) {
     $query->bindValue(':passHache',  $passHache, PDO::PARAM_STR);
 
     $query->execute();
-    $query->CloseCursor();  
+    
 
 }
 
