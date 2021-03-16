@@ -37,7 +37,7 @@ if ($_POST["inputPassword"]==$_POST["inputPasswordvalid"]){
     echo "carré";
 }
 
-
+}
 
 
 
