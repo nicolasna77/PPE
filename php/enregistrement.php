@@ -61,7 +61,7 @@ if(isset($_POST["submitFormEnregistrement"])) {
 
  
 
-    $query = $db->prepare('INSERT INTO client(nom,prenom,email,password) VALUE (:nom,:prenom,:email,:pass_hache)');
+    $query = $db->prepare('INSERT INTO connexions(nom,prenom,email,password) VALUE (:nom,:prenom,:email,:pass_hache)');
 
     $query->bindValue(':nom', $nom, PDO::PARAM_STR);
 
