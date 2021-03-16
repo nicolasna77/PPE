@@ -1,4 +1,5 @@
 <?php 
+    include ("bdd/connectBdd.php");
 
 
 if(empty($_POST['nom']) xor empty($_POST['prenom'])) {
@@ -13,7 +14,6 @@ if (empty($_POST['email'])){
     echo "veuillez entrez un email <br>";
 }
 
-
 if (empty($_POST['password'])){
     echo "Veuillez choisir un mot de passe <br>";
    
@@ -26,17 +26,15 @@ if (empty($_POST['passwordValid'])){
     echo "Veuillez confirmer le mdp <br>";
 }
 
-if (($_POST["password"])!=($_POST["passwordValid"])){
+if ($_POST["password"]!=$_POST["passwordValid"]){
 
     echo "les mots de passes sont differents <br>";
-
 }
 
 
 if (($_POST["password"])==(isset($_POST["passwordValid"]))){
 
     echo "les mots de passes sont ok <br>";
-
 }
 
 
@@ -46,18 +44,15 @@ if (($_POST["password"])==(isset($_POST["passwordValid"]))){
 
 if(isset($_POST["submitFormEnregistrement"])) {
 
-    include ("bdd/connectBdd.php");
-
-
     $nom = $_POST['nom'];
 
     $prenom = $_POST['prenom'];
 
     $email = ($_POST['email']);
 
-    $pass_hache = md5($_POST['password']); 
+    $passHache = md5($_POST['password']); 
 
-    $query = $db->prepare('INSERT INTO connexions(prenom,nom,email,password) VALUE (:nom,:prenom,:email,:pass_hache)');
+    $query = $db->prepare('INSERT INTO connexions(nom, prenom, email, password) VALUE (:nom,:prenom,:email,:passHache)');
 
     $query->bindValue(':nom', $nom, PDO::PARAM_STR);
 
@@ -65,9 +60,10 @@ if(isset($_POST["submitFormEnregistrement"])) {
 
     $query->bindValue(':email', $email, PDO::PARAM_STR);
 
-    $query->bindValue(':pass_hache',  $pass_hache, PDO::PARAM_STR);
+    $query->bindValue(':passHache',  $passHache, PDO::PARAM_STR);
 
     $query->execute();
+    $query->CloseCursor();  
 
 }
 
