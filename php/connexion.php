@@ -33,10 +33,10 @@ if(isset($_POST["submitFormConnexion"])) {
                 $query->execute();
                 $data = $query->fetch();
                
-                if ($data['password'] == $_POST['password']) {
+              
 
-                  ///// passer le mot de passe en md5 ne pas oublier 
-               // if ($data['password'] == md5($_POST['password'])) {
+                  ///// 
+               if ($data['password'] == md5($_POST['password'])) {
                  
             echo 'vous etes bien connecter.';
                     
