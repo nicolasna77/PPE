@@ -55,13 +55,9 @@ if(isset($_POST["submitFormEnregistrement"])) {
 
     $email = ($_POST['email']);
 
-    $pass_hache = md5($_POST['password']);
+    $pass_hache = md5($_POST['password']); 
 
-    
-
- 
-
-    $query = $db->prepare('INSERT INTO connexions(nom,prenom,email,password) VALUE (:nom,:prenom,:email,:pass_hache)');
+    $query = $db->prepare('INSERT INTO connexions(prenom,nom,email,password) VALUE (:nom,:prenom,:email,:pass_hache)');
 
     $query->bindValue(':nom', $nom, PDO::PARAM_STR);
 
