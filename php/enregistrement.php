@@ -50,7 +50,7 @@ if(isset($_POST["submitFormEnregistrement"])) {
 
     $email = ($_POST['email']);
 
-    $passHache = md5($_POST['password']); 
+    $passHache = (md5($_POST['password'])); 
 
     $query = $db->prepare('INSERT INTO connexions(nom, prenom, email, password) VALUE (:nom,:prenom,:email,:passHache)');
 
