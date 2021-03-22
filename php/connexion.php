@@ -78,6 +78,11 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
     <title>vitrine</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="javascript" href="js/bootstrap.js">
+   
+<script src="./js/node_modules/jquery/dist/jquery.slim.js"></script>
+<script src="./js/node_modules/bootstrap-input-spinner/src/input-spinner.js"></script>
+
+
 </head>
 
 
@@ -173,20 +178,10 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                         <!-- select pour le quantité  -->
                         <div class="col-md-3">
-                            <select class="form-select" id="validationCustom04">
-                                <option selected disabled value="">Quantite </option>
-                                <?php
-                                while ($Quantites = $Quantite->fetch()) {
-                                ?>
-
-                                    <option name=" <?php echo $Quantites['Quantite'];  ?> "> <?php echo $Quantites['Quantite'];  ?> </option>
-
-                                <?php
-                                }
-                                $Quantite->closeCursor();
-                                ?>
-                            </select>
-
+                        <label for="qte" class="col-sm-3 col-form-label">Quantité</label>
+                     <input type="number" name="quantite" id="qte" value="0" min="0" max="100" step="1">
+                        <script>$("input[type='number']").inputSpinner();
+                            </script>
                         </div>
 
                         <div class="col-12">
