@@ -220,7 +220,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
     </div>
     </div>
                             </br>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-2 row-cols-md-5 g-6">
    <?php 
    include 'componant/cardObject.php'
    ?>
