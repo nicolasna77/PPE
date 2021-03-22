@@ -45,9 +45,10 @@ if (isset($_POST["submitFormEnregistrement"])) {
 
     $email = ($_POST['email']);
 
-    $passhash = md5($_POST['password']);
+    $passhash = (md5($_POST['password']));
+    $zak ="zakaria";
 
-    $query = $db->prepare('INSERT INTO connexions(nom,prenom,email,password) VALUES (:nom,:prenom,:email,:passhash)');
+    $query = $db->prepare('INSERT INTO connexions(nom,prenom,email,password) VALUE (:nom,:prenom,:email,:passhash)');
 
     $query->bindValue(':nom', $nom, PDO::PARAM_STR);
 
@@ -55,7 +56,8 @@ if (isset($_POST["submitFormEnregistrement"])) {
 
     $query->bindValue(':email', $email, PDO::PARAM_STR);
 
-    $query->bindValue(':passhash',  $passhash, PDO::PARAM_STR);
+     $query->bindValue(':passhash',  $passhash, PDO::PARAM_STR);
+// $query->bindValue(':zak',  $zak, PDO::PARAM_STR);
 
     $query->execute();
 

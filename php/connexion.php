@@ -36,7 +36,7 @@ if(isset($_POST["submitFormConnexion"])) {
               
 
                   ///// 
-               if ($data['password'] == md5($_POST['password'])) {
+               if ($data['password'] == (md5($_POST['password']))) {
                  
             echo 'vous etes bien connecter.';
                     
