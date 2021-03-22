@@ -192,15 +192,14 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <div class="col-12">
                             <div class="form-check form-check-inline">
                                 <!-- checkbox Consultation -->
-                                <input class="form-check-input" type="radio" name="radioConsultation" id="RadioDefault1">
+                                <input class="form-check-input" type="radio" name="radio" value="consultaion" id="RadioDefault1">
                                 <label class="form-check-label" for="RadioDefault1">
                                     Consultation
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-
                                 <!-- checkbox pour les achats  -->
-                                <input class="form-check-input" type="radio" name="radioAchat" id="RadioDefault2">
+                                <input class="form-check-input" type="radio" name="radio" value="achat" id="RadioDefault2">
                                 <label class="form-check-label" for="RadioDefault2">
                                     Achat
                                 </label>

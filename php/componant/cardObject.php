@@ -4,7 +4,7 @@
     if (isset($_POST["submitEnvoi"])) {
 
         ///si le bouton radio est cocher///
-        if ($_POST["radioConsultation"] == 'on'){
+        if ($_POST["radio"] == 'consultaion'){
 
             $stock = $db->query("SELECT * FROM stock");
 
@@ -29,13 +29,16 @@
 
 $stock->closeCursor();
 
-        }elseif ($_POST["radioAchat"] == 'on'){
-            /// si achat est cocher 
         };
-
-
-
+        
+        
+        if ($_POST["radio"] == 'achat'){
+            /// si achat est cocher 
 
         
+        
+        
+        
+        }
        
     } ?>
