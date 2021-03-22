@@ -27,6 +27,7 @@ if(isset($_POST["submitFormConnexion"])) {
               
            }else  
            {  
+               $email= $_POST["email"];
                   ////si il n'y a pas de probleme alors je verifie avec la base de données////
                 $query = $db->prepare("SELECT * FROM connexions  WHERE email = :email");  
                 $query->bindValue(':email', $_POST['email'] ,PDO::PARAM_STR); 
@@ -36,7 +37,7 @@ if(isset($_POST["submitFormConnexion"])) {
               
 
                   ///// 
-               if ($data['password'] == (md5($_POST['password']))) {
+               if ($data['password'] == md5($_POST['password'])) {
                  
             echo 'vous etes bien connecter.';
                     
