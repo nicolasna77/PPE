@@ -221,7 +221,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
     </div>
                             </br>
                             <div style="position: relative;width: 95%; display: block;overflow-x: hidden; margin: auto;">
-    <div class="row row-cols-1 row-cols-md-4 g-4">   
+    <div class="row row-cols-2 row-cols-md-4 g-4">   
         <?php 
    include 'componant/cardObject.php'
    ?>
