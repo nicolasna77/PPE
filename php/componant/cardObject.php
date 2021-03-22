@@ -4,13 +4,12 @@
     if (isset($_POST["submitEnvoi"])) {
 
         ///si le bouton radio est cocher///
-        if (($_POST["radioConsultation"] == 'on') && ($_POST["radioAchat"] == 'off')){
-
+        if ($_POST["radioConsultation"] == 'on'){
 
             $stock = $db->query("SELECT * FROM stock");
 
             while ($stocks = $stock->fetch()) {
-                echo $_POST['radioAchat'];
+              
               echo '<br>
            
               <div class="col">
