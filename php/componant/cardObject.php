@@ -13,19 +13,20 @@
               echo '<br>
            
               <div class="col">
-                         <div class="card h-100" >
+                         <div class="card h-100">
                             <img src="./css/image/th.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                             <h5 class="card-title">' . $stocks["genre"] . '</h5>
+                            <p class="card-text">' . $stocks["typeVet"] . '</p>
                             <p class="card-text">' . $stocks["couleur"] . '</p>
                             <p class="card-text">' . $stocks["taille"] . '</p>
-                            <p class="card-text">' . $stocks["quantite"] . '/piece</p>
                             <p class="card-text">' . $stocks["prix"] . '€</p>
+                            <p class="card-text">' . $stocks["quantite"] . '/piece</p>
                             </div>
                          </div>
                     </div>';
 
-   }  
+            }  
 
 $stock->closeCursor();
 
@@ -34,8 +35,57 @@ $stock->closeCursor();
         
         if ($_POST["radio"] == 'achat'){
             /// si achat est cocher 
+            
+            
+            
+
+            if ($_POST["quantite"]==0){
+
+                echo "selectionner quantité";
+
+            }
+
+
+            elseif (isset($_POST["genre"])){
+
+                echo $_POST["genre"];
+
+
+            }
+
+            elseif (isset($_POST["genre"])){
+
+                echo $_POST["genre"];
+
+
+            }
+            elseif (isset($_POST["genre"])){
+
+                echo $_POST["genre"];
+
+
+            }
+            elseif (isset($_POST["genre"])){
+
+                echo $_POST["genre"];
+
+
+            }
+
 
         
+
+
+    
+            
+
+
+
+            
+
+            
+
+
         
         
         
