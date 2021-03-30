@@ -1,5 +1,5 @@
 <?php
-    // recuperation des données pour les select
+    //recuperation des données pour les select
 
     if (isset($_POST["submitEnvoi"])) {
 
@@ -11,7 +11,6 @@
             while ($stocks = $stock->fetch()) {
               
               echo '<br>
-           
               <div class="col">
                          <div class="card h-100" >
                             <img src="./css/image/th.jpg" class="card-img-top" alt="...">
@@ -24,11 +23,9 @@
                             </div>
                          </div>
                     </div>';
-
-   }  
+   }
 
 $stock->closeCursor();
-
         };
         
         
@@ -36,8 +33,11 @@ $stock->closeCursor();
             /// si achat est cocher 
 
         
+        echo $_POST['quantite'];
         
-        
+    
+
+
         
         }
        

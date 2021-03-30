@@ -43,23 +43,6 @@ if (isset($_POST["submitFormConnexion"])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $genre = $db->query("SELECT distinct genre FROM stock");
 $typeVet = $db->query("SELECT distinct typeVet FROM stock");
 $taille = $db->query("SELECT distinct taille FROM stock");
