@@ -45,8 +45,12 @@ if (isset($_POST["submitFormEnregistrement"])) {
 
     $email = ($_POST['email']);
 
+<<<<<<< Updated upstream
     $passhash = (md5($_POST['password']));
     $zak ="zakaria";
+=======
+    $passHache = md5($_POST['password']); 
+>>>>>>> Stashed changes
 
     $query = $db->prepare('INSERT INTO connexions(nom,prenom,email,password) VALUE (:nom,:prenom,:email,:passhash)');
 

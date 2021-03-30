@@ -84,13 +84,13 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le genre  -->
 
                         <div class="col-md-3">
-                            <select class="form-select" id="validationCustom04">
-                                <option selected disabled value="">Genre</option>
+                            <select class="form-select" name="genre" id="validationCustom04">
+                                <option selected disabled value="G" >Genre</option>
                                 <?php
                                 while ($genres = $genre->fetch()) {
                                 ?>
 
-                                    <option name=" <?php echo $genres['genre'];  ?> "> <?php echo $genres['genre'];  ?> </option>
+                                    <option value=" <?php echo $genres['genre'];  ?> "> <?php echo $genres['genre'];  ?> </option>
 
                                 <?php
                                 }
