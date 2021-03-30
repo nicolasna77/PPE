@@ -102,7 +102,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                         <!-- select pour le type de vetement  -->
                         <div class="col-md-3">
-                            <select class="form-select" id="validationCustom04">
+                            <select name="typeVet" class="form-select" id="validationCustom04">
                                 <option selected disabled value="">Type vetement </option>
                                 <?php
                                 while ($typeVets = $typeVet->fetch()) {
@@ -122,7 +122,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le taille  -->
 
                         <div class="col-md-3">
-                            <select class="form-select" id="validationCustom04">
+                            <select name="taille" class="form-select" id="validationCustom04">
                                 <option selected disabled value="">Taille </option>
                                 <?php
                                 while ($tailles = $taille->fetch()) {
@@ -141,7 +141,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                         <!-- select pour le couleur  -->
                         <div class="col-md-3">
-                            <select class="form-select" id="validationCustom04">
+                            <select name="couleur" class="form-select" id="validationCustom04">
                                 <option selected disabled value="">Couleur </option>
                                 <?php
                                 while ($couleurs = $couleur->fetch()) {

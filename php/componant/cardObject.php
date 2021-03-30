@@ -32,10 +32,13 @@ $stock->closeCursor();
         if ($_POST["radio"] == 'achat'){
             /// si achat est cocher 
 
-        
+           
         echo $_POST['quantite'];
-        
-    
+        echo $_POST['genre'];
+        echo $_POST['typeVet'];
+        echo $_POST['taille'];
+        echo $_POST['couleur'];    
+
 
 
         
