@@ -29,8 +29,15 @@ if (isset($_POST["submitFormConnexion"])) {
 
         ///// 
         if ($data['password'] == md5($_POST['password'])) {
-
-            echo 'vous etes bien connecter.';
+////affichage d'une notification///
+            echo '  
+              <div class="toast-container position-absolute top-0 end-0 p-3">
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-body">
+              Vous etes bien connecter.
+              </div>
+            </div>
+          </div>';
         } else {
 
             echo 'l\'utilisateur n\'ai pas reconnu';
@@ -85,12 +92,14 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                         <div class="col-md-3">
                             <select class="form-select" name="genre" id="validationCustom04">
-                                <option selected disabled value="G" >Genre</option>
+                                <option selected disabled value="">Genre</option>
                                 <?php
                                 while ($genres = $genre->fetch()) {
                                 ?>
 
-                                    <option value=" <?php echo $genres['genre'];  ?> "> <?php echo $genres['genre'];  ?> </option>
+                                    <option value=" <?php echo $genres['genre'];?>"> 
+                                    <?php echo $genres['genre'];?> 
+                                </option>
 
                                 <?php
                                 }
@@ -103,7 +112,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le type de vetement  -->
                         <div class="col-md-3">
                             <select name="typeVet" class="form-select" id="validationCustom04">
-                                <option selected disabled value="">Type vetement </option>
+                                <option selected disabled value="0">Type vetement </option>
                                 <?php
                                 while ($typeVets = $typeVet->fetch()) {
                                 ?>
@@ -123,7 +132,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                         <div class="col-md-3">
                             <select name="taille" class="form-select" id="validationCustom04">
-                                <option selected disabled value="">Taille </option>
+                                <option selected disabled value="0">Taille </option>
                                 <?php
                                 while ($tailles = $taille->fetch()) {
                                 ?>

@@ -1,16 +1,14 @@
 <?php
-    //recuperation des données pour les select
+//affichage des produit de la base 
+if (isset($_POST["submitEnvoi"])) {
+    ///si le bouton radio est cocher///
+    if ($_POST["radio"] == 'consultaion') {
 
-    if (isset($_POST["submitEnvoi"])) {
+        $stock = $db->query("SELECT * FROM stock");
 
-        ///si le bouton radio est cocher///
-        if ($_POST["radio"] == 'consultaion'){
+        while ($stocks = $stock->fetch()) {
 
-            $stock = $db->query("SELECT * FROM stock");
-
-            while ($stocks = $stock->fetch()) {
-              
-              echo '<br>
+            echo '<br>
               <div class="col">
                          <div class="card h-100" >
                             <img src="./css/image/th.jpg" class="card-img-top" alt="...">
@@ -23,25 +21,40 @@
                             </div>
                          </div>
                     </div>';
-   }
+        }
 
-$stock->closeCursor();
-        };
-        
-        
-        if ($_POST["radio"] == 'achat'){
-            /// si achat est cocher 
+        $stock->closeCursor();
+    };
 
-           
-        echo $_POST['quantite'];
+    //
+
+    if ($_POST["radio"] == 'achat') {
+        /// si achat est cocher 
+
+        if ($_POST['quantite'] == '0') {
+
+            echo 'zeferzafzer';
+        }
+        elseif(!empty($_POST['genre'])) {
+
+            echo 'dezdfzed';
+        }
+        elseif(!empty($_POST['typeVet'])) {
+
+            echo 'dezdfzed';
+        }
+        elseif(!empty($_POST['taille'])) {
+
+            echo 'dezdfzed';
+        }
+        elseif(!empty($_POST['couleur'])) {
+
+            echo 'dezdfzed';
+        }
+        
         echo $_POST['genre'];
         echo $_POST['typeVet'];
         echo $_POST['taille'];
-        echo $_POST['couleur'];    
-
-
-
-        
-        }
-       
-    } ?>
+        echo $_POST['couleur'];
+    }
+}
