@@ -97,7 +97,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                                 while ($genres = $genre->fetch()) {
                                 ?>
 
-                                    <option value=" <?php echo $genres['genre'];?>"> 
+                                    <option value="<?php echo $genres['genre'];?>"> 
                                     <?php echo $genres['genre'];?> 
                                 </option>
 
@@ -112,12 +112,12 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le type de vetement  -->
                         <div class="col-md-3">
                             <select name="typeVet" class="form-select" id="validationCustom04">
-                                <option selected disabled value="0">Type vetement </option>
+                                <option selected disabled value="">Type vetement </option>
                                 <?php
                                 while ($typeVets = $typeVet->fetch()) {
                                 ?>
 
-                                    <option name=" <?php echo $typeVets['typeVet'];  ?> "> <?php echo $typeVets['typeVet'];  ?> </option>
+                                    <option value=" <?php echo $typeVets['typeVet'];  ?> "> <?php echo $typeVets['typeVet'];  ?> </option>
 
                                 <?php
                                 }
@@ -132,12 +132,12 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                         <div class="col-md-3">
                             <select name="taille" class="form-select" id="validationCustom04">
-                                <option selected disabled value="0">Taille </option>
+                                <option selected disabled value="">Taille </option>
                                 <?php
                                 while ($tailles = $taille->fetch()) {
                                 ?>
 
-                                    <option name=" <?php echo $tailles['taille'];  ?> "> <?php echo $tailles['taille'];  ?> </option>
+                                    <option value=" <?php echo $tailles['taille'];  ?> "> <?php echo $tailles['taille'];  ?> </option>
 
                                 <?php
                                 }
@@ -156,7 +156,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                                 while ($couleurs = $couleur->fetch()) {
                                 ?>
 
-                                    <option name=" <?php echo $couleurs['couleur'];  ?> "> <?php echo $couleurs['couleur'];  ?> </option>
+                                    <option value="<?php echo $couleurs['couleur'];?>"> <?php echo $couleurs['couleur'];  ?> </option>
 
                                 <?php
                                 }

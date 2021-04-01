@@ -33,23 +33,23 @@ if (isset($_POST["submitEnvoi"])) {
 
         if ($_POST['quantite'] == '0') {
 
-            echo 'zeferzafzer';
+            echo 'qte';
         }
         elseif(!empty($_POST['genre'])) {
 
-            echo 'dezdfzed';
+            echo 'genre';
         }
         elseif(!empty($_POST['typeVet'])) {
 
-            echo 'dezdfzed';
+            echo 'typevet';
         }
         elseif(!empty($_POST['taille'])) {
 
-            echo 'dezdfzed';
+            echo 'taille';
         }
         elseif(!empty($_POST['couleur'])) {
 
-            echo 'dezdfzed';
+            echo 'couleur';
         }
         
         echo $_POST['genre'];
