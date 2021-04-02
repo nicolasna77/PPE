@@ -168,7 +168,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le quantité  -->
                         <div class="col-md-3">
                         <label for="qte" class="col-sm-3 col-form-label">Quantité</label>
-                     <input type="number" name="quantite" id="qte" value="0" min="0" max="100" step="1">
+                     <input type="number" name="quantite" id="qte"  min="0" max="100" step="1">
                         <script>$("input[type='number']").inputSpinner();
                             </script>
                         </div>

@@ -83,31 +83,62 @@ if (isset($_POST["submitEnvoi"])) {
     if ($_POST["radio"] == 'achat') {
         /// si achat est cocher 
 
-        if ($_POST['quantite'] == '0') {
+        // if ($_POST['quantite'] == '0') {
 
-            echo 'qte';
-        }
-        elseif(!empty($_POST['genre'])) {
+        //     echo 'qte';
+        // }
+        // elseif(!empty($_POST['genre'])) {
 
-            echo 'genre';
-        }
-        elseif(!empty($_POST['typeVet'])) {
+        //     echo 'genre';
+        // }
+        // elseif(!empty($_POST['typeVet'])) {
 
-            echo 'typevet';
-        }
-        elseif(!empty($_POST['taille'])) {
+        //     echo 'typevet';
+        // }
+        // elseif(!empty($_POST['taille'])) {
 
-            echo 'taille';
-        }
-        elseif(!empty($_POST['couleur'])) {
+        //     echo 'taille';
+        // }
+        // elseif(!empty($_POST['couleur'])) {
 
-            echo 'couleur';
-        }
+        //     echo 'couleur';
+        // }else {
+            
+        // }
         
-        echo $_POST['genre'];
-        echo $_POST['typeVet'];
-        echo $_POST['taille'];
-        echo $_POST['couleur'];
+        $_POST['genre'] = $genre;
+        $_POST['typeVet'] = $typeVet;
+        $_POST['taille'] = $taille;
+        $_POST['couleur'] = $couleur;
+        $_POST['quantite'] = $quantite;
+
+        $sql = $db->prepare("SELECT * FROM stock WHERE genre=:genre and typeVet =:typeVet and taille=:taille and couleur=:couleur and quantite=:quantite");
+        $sql->bindValue(':genre', $genre, PDO::PARAM_STR);
+        $sql->bindValue(':typeVet', $typeVet, PDO::PARAM_STR);
+        $sql->bindValue(':taille', $taille, PDO::PARAM_STR);
+        $sql->bindValue(':couleur', $couleur, PDO::PARAM_STR);
+        $sql->bindValue(':quantite', $quantite, PDO::PARAM_INT);
+        $sql->execute();
+        $data = $sql->fetch();
+
+echo $data['idStock'];
+
+
+
+
+        // $sql = "UPDATE users SET genre=?, typeVet=?, taille=?, couleur=? WHERE id=?";
+        // $stmt= $pdo->prepare($sql);
+        // $stmt->execute([$name, $surname, $sex, $id]);
+
+
+
+
+       
+       
+        // echo $_POST['genre'];
+        // echo $_POST['typeVet'];
+        // echo $_POST['taille'];
+        // echo $_POST['couleur'];
     }
 }
 
