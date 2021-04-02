@@ -85,9 +85,6 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                     <form method="POST" class="row g-3 needs-validation">
 
-
-
-
                         <!-- select pour le genre  -->
 
                         <div class="col-md-3">
@@ -175,10 +172,11 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <script>$("input[type='number']").inputSpinner();
                             </script>
                         </div>
-
+   
+                                <!-- checkbox Consultation -->
                         <div class="col-12">
                             <div class="form-check form-check-inline">
-                                <!-- checkbox Consultation -->
+                         
                                 <input class="form-check-input" type="radio" name="radio" value="consultaion" id="RadioDefault1">
                                 <label class="form-check-label" for="RadioDefault1">
                                     Consultation
@@ -212,7 +210,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
     </div>
     </div>
                             </br>
-                            <div style="position: relative;width: 95%; display: block;overflow-x: hidden; margin: auto;">
+                            <div style="position: relative;width: 90%; display: block;overflow-x: hidden; margin: auto;">
     <div class="row row-cols-2 row-cols-md-4 g-4">   
         <?php 
    include 'componant/cardObject.php'
@@ -223,6 +221,8 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
 
 </body>
+<script>var myCarousel = document.querySelector('#myCarousel')
+var carousel = new bootstrap.Carousel(myCarousel)</script>
 
 
 </html>
