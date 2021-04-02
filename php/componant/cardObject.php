@@ -44,8 +44,8 @@ if (isset($_POST["submitEnvoi"])) {
                        </div>
                             <div class="card-body">
                             <h5 class="card-title">' . $stocks["typeVet"] . '</h5>
+                            </br>
                             <table class="table table-striped table-borderless">
-  
                             <tbody>
                                  <tr>
                                     <th scope="row">Genre :</th>
