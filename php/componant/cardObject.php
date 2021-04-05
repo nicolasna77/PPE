@@ -43,7 +43,7 @@ if (isset($_POST["submitEnvoi"])) {
                          </button>
                        </div>
                             <div class="card-body">
-                            <h5 class="card-title">' . $stocks["typeVet"] . '</h5>
+                            <h5 class="card-title ">' . $stocks["typeVet"] . '</h5>
                             </br>
                             <table class="table table-striped table-borderless">
                             <tbody>
@@ -81,49 +81,52 @@ if (isset($_POST["submitEnvoi"])) {
     //
 
     if ($_POST["radio"] == 'achat') {
-        /// si achat est cocher 
+        //si achat est cocher 
 
-        // if ($_POST['quantite'] == '0') {
+        if ($_POST['quantite'] == '') {
 
-        //     echo 'qte';
-        // }
-        // elseif(!empty($_POST['genre'])) {
+            echo $_POST['quantite'];
+        }
 
-        //     echo 'genre';
-        // }
-        // elseif(!empty($_POST['typeVet'])) {
+        elseif(empty($_POST['genre'])) {
 
-        //     echo 'typevet';
-        // }
-        // elseif(!empty($_POST['taille'])) {
+            echo $_POST['genre'];
+        }
+        elseif(empty($_POST['typeVet'])) {
 
-        //     echo 'taille';
-        // }
-        // elseif(!empty($_POST['couleur'])) {
+            echo 'typevet';
+        }
+        elseif(empty($_POST['taille'])) {
 
-        //     echo 'couleur';
-        // }else {
-            
-        // }
+            echo 'taille';
+        }
+        elseif(empty($_POST['couleur'])) {
+
+            echo 'couleur';
+        }
         
-        $_POST['genre'] = $genre;
-        $_POST['typeVet'] = $typeVet;
-        $_POST['taille'] = $taille;
-        $_POST['couleur'] = $couleur;
-        $_POST['quantite'] = $quantite;
+       $genre = $_POST['genre'];
+       $typeVet = $_POST['typeVet']  ;
+       $taille= $_POST['taille']  ;
+       $couleur = $_POST['couleur'];
+       $quantite= $_POST['quantite'];
+echo $couleur;
 
-        $sql = $db->prepare("SELECT * FROM stock WHERE genre=:genre and typeVet =:typeVet and taille=:taille and couleur=:couleur and quantite=:quantite");
-        $sql->bindValue(':genre', $genre, PDO::PARAM_STR);
-        $sql->bindValue(':typeVet', $typeVet, PDO::PARAM_STR);
-        $sql->bindValue(':taille', $taille, PDO::PARAM_STR);
-        $sql->bindValue(':couleur', $couleur, PDO::PARAM_STR);
-        $sql->bindValue(':quantite', $quantite, PDO::PARAM_INT);
+
+
+        $sql = $db->prepare("SELECT idStock FROM stock WHERE genre=:genre AND typeVet =:typeVet AND taille=:taille AND couleur=:couleur AND quantite=:quantite");
+        $sql->bindParam(':genre', $genre);
+        $sql->bindParam(':typeVet', $typeVet);
+        $sql->bindParam(':taille', $taille);
+        $sql->bindParam(':couleur', $couleur);
+        $sql->bindParam(':quantite', $quantite);
         $sql->execute();
-        $data = $sql->fetch();
+      
 
-echo $data['idStock'];
+echo $sql['idStock'];
 
 
+$sql->closeCursor();
 
 
         // $sql = "UPDATE users SET genre=?, typeVet=?, taille=?, couleur=? WHERE id=?";

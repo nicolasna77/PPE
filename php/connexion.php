@@ -47,9 +47,6 @@ if (isset($_POST["submitFormConnexion"])) {
 }
 
 
-
-
-
 $genre = $db->query("SELECT distinct genre FROM stock");
 $typeVet = $db->query("SELECT distinct typeVet FROM stock");
 $taille = $db->query("SELECT distinct taille FROM stock");
@@ -75,7 +72,6 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
 </head>
 
-
 <body style="background-color: #ececec; width:'100vh';">
     <div class="container">
         <div class="row">
@@ -88,22 +84,20 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le genre  -->
 
                         <div class="col-md-3">
-                            <select class="form-select" name="genre" id="validationCustom04">
-                                <option selected disabled value="">Genre</option>
-                                <?php
-                                while ($genres = $genre->fetch()) {
-                                ?>
+                                <select class="form-select" name="genre" id="validationCustom04">
+                                        <option selected disabled value="">Genre</option>
+                                        <?php
+                                        while ($genres = $genre->fetch()) {
+                                        ?>
 
-                                    <option value="<?php echo $genres['genre'];?>"> 
-                                    <?php echo $genres['genre'];?> 
-                                </option>
-
-                                <?php
-                                }
-                                $genre->closeCursor();
-                                ?>
-
-                            </select>
+                                            <option value="<?php echo $genres['genre'];?>"> 
+                                                <?php echo $genres['genre'];?> 
+                                            </option>
+                                            
+                                        <?php }
+                                        $genre->closeCursor();
+                                        ?>
+                                </select>
                         </div>
 
                         <!-- select pour le type de vetement  -->
