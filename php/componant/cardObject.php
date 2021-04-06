@@ -113,20 +113,32 @@ if (isset($_POST["submitEnvoi"])) {
 echo $couleur;
 
 
+        
+        $query = $db->query("SELECT * FROM stock WHERE genre=:genre");
+        $query->bindValue(':genre', $genre, PDO::PARAM_STR);
+        $query->bindValue(':typeVet', $typeVet, PDO::PARAM_STR);
+        $query->bindValue(':taille', $taille, PDO::PARAM_STR);
+        $query->bindValue(':couleur', $couleur, PDO::PARAM_STR);
 
-        $sql = $db->prepare("SELECT idStock FROM stock WHERE genre=:genre AND typeVet =:typeVet AND taille=:taille AND couleur=:couleur AND quantite=:quantite");
-        $sql->bindParam(':genre', $genre);
-        $sql->bindParam(':typeVet', $typeVet);
-        $sql->bindParam(':taille', $taille);
-        $sql->bindParam(':couleur', $couleur);
-        $sql->bindParam(':quantite', $quantite);
-        $sql->execute();
-      
+        $query->execute();
 
-echo $sql['idStock'];
+       // $data=$query->fetch();
+       // print_r($data['idStock']);
 
 
-$sql->closeCursor();
+
+    
+        
+        while($row=$query->fetch()){
+            echo $row['idStock'];
+        
+        }
+
+    
+    
+
+
+$query->closeCursor();
 
 
         // $sql = "UPDATE users SET genre=?, typeVet=?, taille=?, couleur=? WHERE id=?";
