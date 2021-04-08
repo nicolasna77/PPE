@@ -29,15 +29,8 @@ if (isset($_POST["submitFormConnexion"])) {
 
         ///// 
         if ($data['password'] == md5($_POST['password'])) {
-////affichage d'une notification///
-            echo '  
-              <div class="toast-container position-absolute top-0 end-0 p-3">
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-              <div class="toast-body">
-              Vous etes bien connecter.
-              </div>
-            </div>
-          </div>';
+
+            echo 'vous etes bien connecter.';
         } else {
 
             echo 'l\'utilisateur n\'ai pas reconnu';
@@ -45,6 +38,26 @@ if (isset($_POST["submitFormConnexion"])) {
         $query->CloseCursor();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $genre = $db->query("SELECT distinct genre FROM stock");
@@ -72,6 +85,7 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
 </head>
 
+
 <body style="background-color: #ececec; width:'100vh';">
     <div class="container">
         <div class="row">
@@ -81,34 +95,37 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                     <form method="POST" class="row g-3 needs-validation">
 
+
+
+
                         <!-- select pour le genre  -->
 
                         <div class="col-md-3">
-                                <select class="form-select" name="genre" id="validationCustom04">
-                                        <option selected disabled value="">Genre</option>
-                                        <?php
-                                        while ($genres = $genre->fetch()) {
-                                        ?>
+                            <select class="form-select" name="genre" id="validationCustom04">
+                                <option selected disabled value="G" >Genre</option>
+                                <?php
+                                while ($genres = $genre->fetch()) {
+                                ?>
 
-                                            <option value="<?php echo $genres['genre'];?>"> 
-                                                <?php echo $genres['genre'];?> 
-                                            </option>
-                                            
-                                        <?php }
-                                        $genre->closeCursor();
-                                        ?>
-                                </select>
+                                    <option value="<?php echo $genres['genre'];  ?>"> <?php echo $genres['genre'];  ?> </option>
+
+                                <?php
+                                }
+                                $genre->closeCursor();
+                                ?>
+
+                            </select>
                         </div>
 
                         <!-- select pour le type de vetement  -->
                         <div class="col-md-3">
-                            <select name="typeVet" class="form-select" id="validationCustom04">
+                            <select class="form-select" name="typeVet" id="validationCustom04">
                                 <option selected disabled value="">Type vetement </option>
                                 <?php
                                 while ($typeVets = $typeVet->fetch()) {
                                 ?>
 
-                                    <option value=" <?php echo $typeVets['typeVet'];  ?> "> <?php echo $typeVets['typeVet'];  ?> </option>
+                                    <option value="<?php echo $typeVets['typeVet']; ?>"> <?php echo $typeVets['typeVet'];  ?> </option>
 
                                 <?php
                                 }
@@ -122,13 +139,13 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le taille  -->
 
                         <div class="col-md-3">
-                            <select name="taille" class="form-select" id="validationCustom04">
+                            <select class="form-select" name="taille" id="validationCustom04">
                                 <option selected disabled value="">Taille </option>
                                 <?php
                                 while ($tailles = $taille->fetch()) {
                                 ?>
 
-                                    <option value=" <?php echo $tailles['taille'];  ?> "> <?php echo $tailles['taille'];  ?> </option>
+                                    <option value="<?php echo $tailles['taille'];  ?>"> <?php echo $tailles['taille'];  ?> </option>
 
                                 <?php
                                 }
@@ -141,13 +158,13 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
 
                         <!-- select pour le couleur  -->
                         <div class="col-md-3">
-                            <select name="couleur" class="form-select" id="validationCustom04">
+                            <select class="form-select" name="couleur" id="validationCustom04">
                                 <option selected disabled value="">Couleur </option>
                                 <?php
                                 while ($couleurs = $couleur->fetch()) {
                                 ?>
 
-                                    <option value="<?php echo $couleurs['couleur'];?>"> <?php echo $couleurs['couleur'];  ?> </option>
+                                    <option value="<?php echo $couleurs['couleur'];  ?>"> <?php echo $couleurs['couleur'];  ?> </option>
 
                                 <?php
                                 }
@@ -162,15 +179,14 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
                         <!-- select pour le quantité  -->
                         <div class="col-md-3">
                         <label for="qte" class="col-sm-3 col-form-label">Quantité</label>
-                     <input type="number" name="quantite" id="qte"  min="0" max="100" step="1">
+                     <input type="number" name="quantite" id="qte" value="0" min="0" max="100" step="1">
                         <script>$("input[type='number']").inputSpinner();
                             </script>
                         </div>
-   
-                                <!-- checkbox Consultation -->
+
                         <div class="col-12">
                             <div class="form-check form-check-inline">
-                         
+                                <!-- checkbox Consultation -->
                                 <input class="form-check-input" type="radio" name="radio" value="consultaion" id="RadioDefault1">
                                 <label class="form-check-label" for="RadioDefault1">
                                     Consultation
@@ -204,8 +220,8 @@ $Quantite = $db->query("SELECT distinct Quantite FROM stock");
     </div>
     </div>
                             </br>
-                            <div style="position: relative;width: 90%; display: block;overflow-x: hidden; margin: auto;">
-    <div class="row row-cols-1 row-cols-md-4 g-4">   
+                            <div style="position: relative;width: 95%; display: block;overflow-x: hidden; margin: auto;">
+    <div class="row row-cols-2 row-cols-md-4 g-4">   
         <?php 
    include 'componant/cardObject.php'
    ?>

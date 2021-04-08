@@ -87,9 +87,9 @@ if (isset($_POST["submitEnvoi"])) {
     if ($_POST["radio"] == 'achat') {
         //si achat est cocher 
 
-        if ($_POST['quantite'] == '') {
+        if ($_POST['quantite'] == 0) {
 
-            echo $_POST['quantite'];
+            echo 'Choisir quantite';
         }
 
         elseif(empty($_POST['genre'])) {
@@ -110,41 +110,29 @@ if (isset($_POST["submitEnvoi"])) {
             echo 'couleur';
         }
         
-       $genre = $_POST['genre'];
-       $typeVet = $_POST['typeVet'];
-       $taille= $_POST['taille'];
-       $couleur = $_POST['couleur'];
-       $quantite= $_POST['quantite'];
-
-
-
-        
-        // $query = $db->query("SELECT * FROM stock ");
-
-        // $query->execute();
-
-        
-
-        // $row=$query->fetch();
-
-        
-
-        // echo $row['idStock'];
-        
-        
-        
-        $stmt = $db->prepare('SELECT * FROM stock WHERE genre LIKE '.$_POST['genre'].' ');
-        $stmt->execute();
        
-        if ($data = $stmt->fetch()) {
-            do {
-                echo $data['idStock'] . '<br>';
-                echo $data['typeVet'] . '<br>';
-            } while ($data = $stmt->fetch());
-        } else {
-            echo 'Empty Query';
+
+
+
+    
+        $req = $db->prepare('SELECT idStock FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
+        $req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
+
+        echo '<ul>';
+        while ($donnees = $req->fetch())
+        {
+	    echo '<li>' . $donnees['idStock'] . '';
+
+        
+
         }
+
+        
+        
+
     
+
+$req->closeCursor();
 
 
         
@@ -177,7 +165,7 @@ if (isset($_POST["submitEnvoi"])) {
     
 
 
-$stmt->closeCursor();
+
 
 
         // $sql = "UPDATE users SET genre=?, typeVet=?, taille=?, couleur=? WHERE id=?";
