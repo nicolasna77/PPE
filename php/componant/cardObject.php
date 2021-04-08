@@ -57,12 +57,16 @@ if (isset($_POST["submitEnvoi"])) {
                                     <td>' . $stocks["couleur"] . '</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Quantiter disponible :</th>
+                                    <th scope="row">Quantite disponible :</th>
                                     <td>' . $stocks["quantite"] . '</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Prix :</th>
                                     <td >' . $stocks["prix"] . ' €</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">idstock :</th>
+                                    <td >' . $stocks["idStock"] . '</td>
                                 </tr>
                             </tbody>
                             </table>
@@ -91,6 +95,7 @@ if (isset($_POST["submitEnvoi"])) {
         elseif(empty($_POST['genre'])) {
 
             echo $_POST['genre'];
+            
         }
         elseif(empty($_POST['typeVet'])) {
 
@@ -106,39 +111,73 @@ if (isset($_POST["submitEnvoi"])) {
         }
         
        $genre = $_POST['genre'];
-       $typeVet = $_POST['typeVet']  ;
-       $taille= $_POST['taille']  ;
+       $typeVet = $_POST['typeVet'];
+       $taille= $_POST['taille'];
        $couleur = $_POST['couleur'];
        $quantite= $_POST['quantite'];
-echo $couleur;
+
 
 
         
-        $query = $db->query("SELECT * FROM stock WHERE genre=:genre");
-        $query->bindValue(':genre', $genre, PDO::PARAM_STR);
-        $query->bindValue(':typeVet', $typeVet, PDO::PARAM_STR);
-        $query->bindValue(':taille', $taille, PDO::PARAM_STR);
-        $query->bindValue(':couleur', $couleur, PDO::PARAM_STR);
+        // $query = $db->query("SELECT * FROM stock ");
 
-        $query->execute();
+        // $query->execute();
 
-       // $data=$query->fetch();
-       // print_r($data['idStock']);
-
-
-
-    
         
-        while($row=$query->fetch()){
-            echo $row['idStock'];
+
+        // $row=$query->fetch();
+
         
+
+        // echo $row['idStock'];
+        
+        
+        
+        $stmt = $db->prepare('SELECT * FROM stock WHERE genre LIKE '.$_POST['genre'].' ');
+        $stmt->execute();
+       
+        if ($data = $stmt->fetch()) {
+            do {
+                echo $data['idStock'] . '<br>';
+                echo $data['typeVet'] . '<br>';
+            } while ($data = $stmt->fetch());
+        } else {
+            echo 'Empty Query';
         }
+    
+
+
+        
+        
+
+        
+
+        
+        
+        
+
+
+        
+        
+
+    
+       
+    
+        
+
+       
+
+
+
+    
+        
+        
 
     
     
 
 
-$query->closeCursor();
+$stmt->closeCursor();
 
 
         // $sql = "UPDATE users SET genre=?, typeVet=?, taille=?, couleur=? WHERE id=?";
@@ -156,4 +195,4 @@ $query->closeCursor();
         // echo $_POST['couleur'];
     }
 }
-
+?>
