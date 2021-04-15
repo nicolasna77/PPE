@@ -27,20 +27,6 @@ if (isset($_POST["submitEnvoi"])) {
                            <img src="./css/image/th.jpg" class="card-img-top" alt="...">
                            </div>
                          
-
-                         <div class="carousel-indicators">
-                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                       </div>
-                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Previous</span>
-                         </button>
-                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                           <span class="visually-hidden">Next</span>
-                         </button>
                        </div>
                             <div class="card-body">
                             <h5 class="card-title ">' . $stocks["typeVet"] . '</h5>
@@ -115,17 +101,101 @@ if (isset($_POST["submitEnvoi"])) {
 
 
     
-        $req = $db->prepare('SELECT idStock FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
+        $req = $db->prepare('SELECT * FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
         $req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
 
         echo '<ul>';
         while ($donnees = $req->fetch())
         {
-	    echo '<li>' . $donnees['idStock'] . '';
+	  if ($donnees['quantite'] > $_POST['quantite']) {
+   
+    
+            $qte = ($donnees['quantite'] - $_POST['quantite']);
+       
+            $stmt = $db->prepare("UPDATE stock SET  quantite =$qte WHERE idStock = :idStock");                                  
+            // $stmt->bindParam(':quantite', $qte, PDO::PARAM_INT);       
+            $stmt->bindParam(':idStock', $donnees['idStock'], PDO::PARAM_INT);    
+            $stmt->execute();  
+         }else{
+echo 'la quantité n\'ai pas disponible';
+
+
+         }
+
+         }
+
+
+$req = $db->prepare('SELECT * FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
+$req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
+
+echo '<ul>';
+while ($donnees = $req->fetch())
+{
+
+echo '
+
+        <div class="card h-100"  >
+                        
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+          <img src="./css/image/th.jpg" class="card-img-top" alt="...">
+          </div>
+          <div class="carousel-item">
+          <img src="./css/image/vet.jpg" class="card-img-top" alt="...">
+          </div>
+          <div class="carousel-item">
+          <img src="./css/image/th.jpg" class="card-img-top" alt="...">
+          </div>
+        
+      </div>
+           <div class="card-body">
+           <h5 class="card-title ">' . $donnees["typeVet"] . '</h5>
+           </br>
+           <table class="table table-striped table-borderless">
+           <tbody>
+                <tr>
+                   <th scope="row">Genre :</th>
+                   <td>' . $donnees["genre"] . '</td>
+           
+               </tr>
+               <tr>
+                   <th scope="row">Couleur :</th>
+                   <td>' . $donnees["couleur"] . '</td>
+               </tr>
+               <tr>
+                   <th scope="row">Quantite disponible :</th>
+                   <td>' . $donnees["quantite"] . '</td>
+               </tr>
+               <tr>
+                   <th scope="row">Prix :</th>
+                   <td >' . $donnees["prix"] . ' €</td>
+               </tr>
+               <tr>
+                   <th scope="row">id :</th>
+                   <td >' . $donnees["idStock"] . '</td>
+               </tr>
+           </tbody>
+           </table>
+        
+           </div>
+        </div>
+        </div>';
+
+
+
+
+
+
+}
+
+
+
 
         
 
-        }
+   
 
         
         
