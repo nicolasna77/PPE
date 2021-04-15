@@ -3,9 +3,12 @@ var carousel = new bootstrap.Carousel(myCarousel)</script>
 <?php
 //affichage des produit de la base 
 if (isset($_POST["submitEnvoi"])) {
-    ///si le bouton radio est cocher///
+    ///si le bouton radio consultation est cocher alors ont affiche toute la table ///
     if ($_POST["radio"] == 'consultaion') {
 
+
+
+        // select pour afficher toute la table stock sous forme de card  //
         $stock = $db->query("SELECT * FROM stock");
 
         while ($stocks = $stock->fetch()) {
@@ -17,15 +20,7 @@ if (isset($_POST["submitEnvoi"])) {
                          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
                          <div class="carousel-inner">
-                           <div class="carousel-item active">
-                           <img src="./css/image/th.jpg" class="card-img-top" alt="...">
-                           </div>
-                           <div class="carousel-item">
-                           <img src="./css/image/vet.jpg" class="card-img-top" alt="...">
-                           </div>
-                           <div class="carousel-item">
-                           <img src="./css/image/th.jpg" class="card-img-top" alt="...">
-                           </div>
+                         
                          
                        </div>
                             <div class="card-body">
@@ -67,9 +62,8 @@ if (isset($_POST["submitEnvoi"])) {
 
         $stock->closeCursor();
     };
-// 
-    //
 
+// si le bouton radio achat est cocher //
     if ($_POST["radio"] == 'achat') {
         //si achat est cocher 
 
@@ -100,7 +94,7 @@ if (isset($_POST["submitEnvoi"])) {
 
 
 
-    
+    // select de l'id de l'article demander //
         $req = $db->prepare('SELECT * FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
         $req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
 
@@ -109,21 +103,21 @@ if (isset($_POST["submitEnvoi"])) {
         {
 	  if ($donnees['quantite'] > $_POST['quantite']) {
    
-    
+    // soustraction de la quantite demander a la quantite disponible //
+
             $qte = ($donnees['quantite'] - $_POST['quantite']);
-       
+       /// update de la quantite //
             $stmt = $db->prepare("UPDATE stock SET  quantite =$qte WHERE idStock = :idStock");                                  
             // $stmt->bindParam(':quantite', $qte, PDO::PARAM_INT);       
             $stmt->bindParam(':idStock', $donnees['idStock'], PDO::PARAM_INT);    
             $stmt->execute();  
          }else{
-echo 'la quantité n\'ai pas disponible';
-
-
+            echo 'la quantité n\'ai pas disponible';
          }
 
          }
 
+// select pour afficher la card modifier //
 
 $req = $db->prepare('SELECT * FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
 $req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
@@ -139,15 +133,7 @@ echo '
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
         <div class="carousel-inner">
-          <div class="carousel-item active">
-          <img src="./css/image/th.jpg" class="card-img-top" alt="...">
-          </div>
-          <div class="carousel-item">
-          <img src="./css/image/vet.jpg" class="card-img-top" alt="...">
-          </div>
-          <div class="carousel-item">
-          <img src="./css/image/th.jpg" class="card-img-top" alt="...">
-          </div>
+         
         
       </div>
            <div class="card-body">
