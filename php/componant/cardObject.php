@@ -42,6 +42,10 @@ if (isset($_POST["submitEnvoi"])) {
                                     <td>' . $stocks["quantite"] . '</td>
                                 </tr>
                                 <tr>
+                                    <th scope="row">Taille disponible :</th>
+                                    <td>' . $stocks["taille"] . '</td>
+                                </tr>
+                                <tr>
                                     <th scope="row">Prix :</th>
                                     <td >' . $stocks["prix"] . ' €</td>
                                 </tr>
