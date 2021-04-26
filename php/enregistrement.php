@@ -45,7 +45,7 @@ if (isset($_POST["submitFormEnregistrement"])) {
 
     $email = ($_POST['email']);
 
-    $passhash = (md5($_POST['password']));
+    $passhash = ($_POST['password']);
 
 
 
