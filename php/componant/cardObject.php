@@ -47,7 +47,11 @@ if (isset($_POST["submitEnvoi"])) {
                                 </tr>
                                 <tr>
                                     <th scope="row">Prix :</th>
-                                    <td >' . $stocks["prix"] . ' €</td>
+                                    <td >' . $stocks["prix"] . ' </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">idStock :</th>
+                                    <td >' . $stocks["idStock"] . ' </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">idstock :</th>
@@ -67,47 +71,149 @@ if (isset($_POST["submitEnvoi"])) {
         $stock->closeCursor();
     };
 
-// si le bouton radio achat est cocher //
+    // si le bouton radio achat est cocher //
     if ($_POST["radio"] == 'achat') {
         //si achat est cocher 
 
         if ($_POST['quantite'] == 0) {
 
-            echo 'Choisir quantite';
+            echo '
+
+            <div class="card h-100"  >
+                            
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    
+            <div class="carousel-inner">
+             
+            
+          </div>
+               <div class="card-body">
+               <h5 class="card-title "> Vous devez choisir une quantité </h5>
+               </br>
+               <table class="table table-striped table-borderless">
+               <tbody>
+               </tbody>
+               </table>
+            
+               </div>
+            </div>
+            </div>';
         }
 
         elseif(empty($_POST['genre'])) {
 
-            echo $_POST['genre'];
+            echo '
+
+            <div class="card h-100"  >
+                            
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    
+            <div class="carousel-inner">
+             
             
+          </div>
+               <div class="card-body">
+               <h5 class="card-title "> Vous devez choisir un genre </h5>
+               </br>
+               <table class="table table-striped table-borderless">
+               <tbody>
+               </tbody>
+               </table>
+            
+               </div>
+            </div>
+            </div>';
         }
         elseif(empty($_POST['typeVet'])) {
 
-            echo 'typevet';
+
+            echo '
+
+            <div class="card h-100"  >
+                            
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    
+            <div class="carousel-inner">
+             
+            
+          </div>
+               <div class="card-body">
+               <h5 class="card-title "> Vous devez choisir un type de vêtement </h5>
+               </br>
+               <table class="table table-striped table-borderless">
+               <tbody>
+               </tbody>
+               </table>
+            
+               </div>
+            </div>
+            </div>';
         }
         elseif(empty($_POST['taille'])) {
 
-            echo 'taille';
+            echo '
+
+            <div class="card h-100"  >
+                            
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    
+            <div class="carousel-inner">
+             
+            
+          </div>
+               <div class="card-body">
+               <h5 class="card-title "> Vous devez choisir une taille </h5>
+               </br>
+               <table class="table table-striped table-borderless">
+               <tbody>
+               </tbody>
+               </table>
+            
+               </div>
+            </div>
+            </div>';
         }
         elseif(empty($_POST['couleur'])) {
 
-            echo 'couleur';
+            echo '
+
+            <div class="card h-100"  >
+                            
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    
+            <div class="carousel-inner">
+             
+            
+          </div>
+               <div class="card-body">
+               <h5 class="card-title "> Vous devez choisir une couleur </h5>
+               </br>
+               <table class="table table-striped table-borderless">
+               <tbody>
+               </tbody>
+               </table>
+            
+               </div>
+            </div>
+            </div>';
         }
+
+
         
-       
+    else {
 
 
-
-    // select de l'id de l'article demander //
+        
+        // select de l'id de l'article demander //
         $req = $db->prepare('SELECT * FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
         $req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
 
         echo '<ul>';
         while ($donnees = $req->fetch())
         {
-	  if ($donnees['quantite'] > $_POST['quantite']) {
+	    if ($donnees['quantite'] > $_POST['quantite']) {
    
-    // soustraction de la quantite demander a la quantite disponible //
+        // soustraction de la quantite demander a la quantite disponible //
 
             $qte = ($donnees['quantite'] - $_POST['quantite']);
        /// update de la quantite //
@@ -120,17 +226,19 @@ if (isset($_POST["submitEnvoi"])) {
          }
 
          }
+        
+        // select pour afficher la card modifier //
 
-// select pour afficher la card modifier //
+        
+        
+        $req = $db->prepare('SELECT * FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
+        $req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
 
-$req = $db->prepare('SELECT * FROM stock WHERE genre = ? AND typeVet = ? AND taille = ? AND couleur = ?');
-$req->execute(array($_POST['genre'],$_POST['typeVet'],$_POST['taille'],$_POST['couleur']));
+        echo '<ul>';
+        while ($donnees = $req->fetch())
+        {
 
-echo '<ul>';
-while ($donnees = $req->fetch())
-{
-
-echo '
+        echo '
 
         <div class="card h-100"  >
                         
@@ -178,7 +286,7 @@ echo '
 
 
 
-}
+       }
 
 
 
@@ -241,6 +349,6 @@ $req->closeCursor();
         // echo $_POST['typeVet'];
         // echo $_POST['taille'];
         // echo $_POST['couleur'];
-    }
+    }}
 }
 ?>
