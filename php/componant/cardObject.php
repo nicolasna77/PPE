@@ -53,10 +53,7 @@ if (isset($_POST["submitEnvoi"])) {
                                     <th scope="row">idStock :</th>
                                     <td >' . $stocks["idStock"] . ' </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">idstock :</th>
-                                    <td >' . $stocks["idStock"] . '</td>
-                                </tr>
+                              
                             </tbody>
                             </table>
                          
@@ -103,7 +100,6 @@ if (isset($_POST["submitEnvoi"])) {
         elseif(empty($_POST['genre'])) {
 
             echo '
-
             <div class="card h-100"  >
                             
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
